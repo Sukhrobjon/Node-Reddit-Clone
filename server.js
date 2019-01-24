@@ -2,16 +2,23 @@
 const express = require('express')
 const app = express()
 const port = process.env.PORT || 3000
-
+const exphbs = require('express-handlebars');
+const bodyParser = require('body-parser');
+const expressValidator = require('express-validator');
+// the controllers
+const posts = require('./controllers/posts.js');
 
 // handlebars
-var exphbs = require('express-handlebars');
 app.engine('handlebars', exphbs({defaultLayout: 'main'}));
 app.set('view engine', 'handlebars');
 
-// routes
-app.get('/', (req, res) => res.render('home'))
+// Middleware
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(expressValidator());
+posts(app);
 
 // port
 app.listen(port, () => 
 console.log(`Example app listening on port ${port}!`))
+
