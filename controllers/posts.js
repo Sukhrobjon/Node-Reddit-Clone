@@ -4,8 +4,8 @@ module.exports = (app) => {
     // INDEX
     app.get('/', (req, res) => {
         Post.find()
-            .then(posts => {
-                res.render('posts-index', { posts });
+            .then(post => {
+                res.render('posts-index', { post: post });
             })
             .catch(err => {
                 console.log(err.message);
@@ -18,6 +18,8 @@ module.exports = (app) => {
     });
 
     // CREATE
+    // TO-DO: create posts are limited
+    
     app.post('/posts/new', (req, res) => {
         // INSTANTIATE INSTANCE OF POST MODEL
         const post = new Post(req.body);
@@ -29,6 +31,7 @@ module.exports = (app) => {
         })
     });
 
+    // SHOW
     app.get("/posts/:id", (req, res) => {
         // LOOK UP THE POST
         Post.findById(req.params.id)
