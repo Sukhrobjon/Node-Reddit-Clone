@@ -28,7 +28,11 @@ app.set('view engine', 'handlebars');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(expressValidator());
+
+
 posts(app);
+
+module.exports = app;
 
 // port
 app.listen(port, () => 

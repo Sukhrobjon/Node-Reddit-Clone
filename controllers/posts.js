@@ -4,8 +4,8 @@ module.exports = (app) => {
     // INDEX
     app.get('/', (req, res) => {
         Post.find()
-            .then(post => {
-                res.render('posts-index', { post: post });
+            .then(posts => {
+                res.render('posts-index', { posts });
             })
             .catch(err => {
                 console.log(err.message);
