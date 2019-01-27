@@ -1,7 +1,10 @@
 // Requirements 
 const dotenv = require('dotenv').config();
+var cookieParser = require('cookie-parser');
+const jwt = require('jsonwebtoken');
 const express = require('express')
 const app = express()
+
 const port = process.env.PORT || 3000
 const exphbs = require('express-handlebars');
 const bodyParser = require('body-parser');
@@ -14,7 +17,7 @@ const auth = require('./controllers/auth.js')
 
 
 // Set db
-const database = require('./data/reddit-db');
+const database = require('./data/reddit-db.js');
 
 
 //mongodb
@@ -31,6 +34,7 @@ app.set('view engine', 'handlebars');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(expressValidator());
+app.use(cookieParser());
 
 
 // exporting the routes from controllers

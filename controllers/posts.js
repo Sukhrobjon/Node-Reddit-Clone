@@ -1,5 +1,5 @@
 const Post = require('../models/post.js');
-
+const User = require('../models/user')
 module.exports = (app) => {
     // INDEX
     app.get('/', function (req, res) {
