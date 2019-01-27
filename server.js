@@ -8,6 +8,7 @@ const expressValidator = require('express-validator');
 
 // the controllers
 const posts = require('./controllers/posts.js');
+const comments = require('./controllers/comments.js')
 
 
 // Set db
@@ -30,7 +31,9 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(expressValidator());
 
 
+// exporting the routes from controllers
 posts(app);
+comments(app)
 
 module.exports = app;
 

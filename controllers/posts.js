@@ -2,7 +2,7 @@ const Post = require('../models/post.js');
 
 module.exports = (app) => {
     // INDEX
-    app.get('/', (req, res) => {
+    app.get('/', function (req, res) {
         Post.find()
             .then(posts => {
                 res.render('posts-index', { posts });
@@ -13,14 +13,14 @@ module.exports = (app) => {
     });
 
     // NEW
-    app.get("/posts/new", (req, res) => {
+    app.get("/posts/new", function (req, res) {
         res.render('posts-new', {})
     });
 
     // CREATE
     // TO-DO: create posts are limited
     
-    app.post('/posts/new', (req, res) => {
+    app.post('/posts/new', function (req, res) {
         // INSTANTIATE INSTANCE OF POST MODEL
         const post = new Post(req.body);
 
@@ -32,7 +32,7 @@ module.exports = (app) => {
     });
 
     // SHOW
-    app.get("/posts/:id", (req, res) => {
+    app.get("/posts/:id", function (req, res) {
         // LOOK UP THE POST
         Post.findById(req.params.id)
             .then(post => {
