@@ -17,3 +17,25 @@
 * [ ] Associate posts, comments, and votes with their author
 * [ ] Make comments on comments
 * [ ] Vote a post up or down
+
+## Set the repo 
+
+Clone the repo and install the dependencies.
+
+```bash
+git clone https://github.com/Sukhrobjon/Node-Reddit-Clone.git
+cd the-example-app.nodejs
+```
+
+```bash
+npm install
+```
+
+## Running
+
+To start the express server, run the following
+
+```bash
+npm run start
+```
+
