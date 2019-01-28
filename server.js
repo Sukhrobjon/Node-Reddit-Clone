@@ -21,8 +21,8 @@ const database = require('./data/reddit-db.js');
 
 
 //mongodb
-const mongoose = require("mongoose");
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/redditjs-clone", {useNewUrlParser: true});
+// const mongoose = require("mongoose");
+// mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/redditjs-clone", {useNewUrlParser: true});
 
 
 // handlebars
