@@ -51,23 +51,20 @@ module.exports = (app) => {
     app.get("/posts/:id", function (req, res) {
         // LOOK UP THE POST
         var currentUser = req.user;
-        Post.findById(req.params.id).populate('comments').then((post) => {
-            res.render('posts-show', {
-                post, currentUser
+        Post.findById(req.params.id).populate('comments').populate('author')
+            .then((post) => {
+                res.render('posts-show', { post, currentUser })
+            }).catch((err) => {
+                console.log(err.message)
             })
-        }).catch((err) => {
-            console.log(err.message)
-        })
     });
 
     // SUBREDDIT
     app.get("/n/:subreddit", function (req, res) {
-        
-        Post.find({
-                subreddit: req.params.subreddit
-            })
+        var currentUser = req.user;
+        Post.find({ subreddit: req.params.subreddit }).populate('author')
             .then(posts => {
-                res.render("posts-index", { posts });
+                res.render("posts-index", { posts, currentUser });
             })
             .catch(err => {
                 console.log(err);
