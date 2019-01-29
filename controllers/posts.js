@@ -2,10 +2,11 @@ const Post = require('../models/post.js');
 const User = require('../models/user')
 
 /**
- * TO-DO:
- * Check if the 
- *   var currentUser = req.user is implemented correctly?
- */
+* TO-DO:
+* Check if:  
+* var currentUser = req.user is placed right places and 
+* correctly implemented?
+*/
 
 module.exports = (app) => {
     // INDEX
