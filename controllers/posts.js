@@ -3,9 +3,11 @@ const User = require('../models/user')
 module.exports = (app) => {
     // INDEX
     app.get('/', function (req, res) {
+        var currentUser = req.user;
         Post.find()
             .then(posts => {
-                res.render('posts-index', { posts });
+                console.log(`currenUser: ${currentUser}`)
+                res.render('posts-index', { posts, currentUser });
             })
             .catch(err => {
                 console.log(err.message);
@@ -14,27 +16,33 @@ module.exports = (app) => {
 
     // NEW
     app.get("/posts/new", function (req, res) {
+        var currentUser = req.user;
         res.render('posts-new', {})
     });
 
     // CREATE
     app.post('/posts/new', function (req, res) {
-        // INSTANTIATE INSTANCE OF POST MODEL
-        const post = new Post(req.body);
+        if (req.user) {
+            // INSTANTIATE INSTANCE OF POST MODEL
+            const post = new Post(req.body);
 
-        // SAVE INSTANCE OF POST MODEL TO DB
-        post.save((err, post) => {
-            // REDIRECT TO THE ROOT
-            return res.redirect(`/`);
-        })
+            // SAVE INSTANCE OF POST MODEL TO DB
+            post.save((err, post) => {
+                // REDIRECT TO THE ROOT
+                return res.redirect(`/`);
+            });
+        } else {
+            return res.status(401); // UNAUTHORIZED
+        }
     });
 
-    // SHOW
+    // SHOW One post
     app.get("/posts/:id", function (req, res) {
         // LOOK UP THE POST
+        var currentUser = req.user;
         Post.findById(req.params.id).populate('comments').then((post) => {
             res.render('posts-show', {
-                post
+                post, currentUser
             })
         }).catch((err) => {
             console.log(err.message)
@@ -58,3 +66,8 @@ module.exports = (app) => {
 
 }
 
+
+/**
+ * Problem not all subreddits are shown:
+ * specifically under 'coding' subreddit
+ */

@@ -13,3 +13,23 @@
 
 4. Just the id's right? When we do a reference association, we only save the id's into the parent's document. In order to replace these id's with the actual child document, we have to use the mongoose function `.populate()` when we fetch the parent from the database.
 
+- Question:
+    what is the difference 
+    ```javascript
+         app.get('/', function (req, res) {
+        var currentUser = req.user;
+        Post.find()
+            .then(posts => {
+                res.render('posts-index', { posts, currentUser });
+            })
+            .catch(err => {
+                console.log(err.message);
+            });
+    });
+
+    res.render('posts-index', { posts, currentUser });
+    
+    vs
+
+    res.render('posts-index', { post: post, currentUser: currentUser });
+    ```
