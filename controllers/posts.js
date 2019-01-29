@@ -1,5 +1,12 @@
 const Post = require('../models/post.js');
 const User = require('../models/user')
+
+/**
+ * TO-DO:
+ * Check if the 
+ *   var currentUser = req.user is implemented correctly?
+ */
+
 module.exports = (app) => {
     // INDEX
     app.get('/', function (req, res) {
@@ -75,6 +82,15 @@ module.exports = (app) => {
 
 
 /**
- * Problem not all subreddits are shown:
- * specifically under 'coding' subreddit
- */
+* Problem not all subreddits are shown:
+* specifically under 'coding' subreddit
+* 
+* 
+*   STRETCH CHALLENGE:
+* 
+* 1. Can you make an author's username a link that displays 
+*    that users' profile at /users/:username?
+* 2. Can you do the same for comments ?
+* 3. Can you make a /profile route that loads the current user 
+*    and displays their posts and comments ?
+*/
