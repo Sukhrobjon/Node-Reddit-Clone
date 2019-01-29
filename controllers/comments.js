@@ -8,7 +8,7 @@ const User = require('../models/user')
 module.exports = function(app) {
     // CREATE Comment
     app.post('/posts/:postId/comments', function (req, res) {
-        //creating instance of model
+        var currentUser = req.user;
         if (req.user) {
             const comment = new Comment(req.body)
             comment.author = req.user._id;
