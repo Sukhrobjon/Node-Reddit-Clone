@@ -14,6 +14,7 @@ const expressValidator = require('express-validator');
 const posts = require('./controllers/posts.js');
 const comments = require('./controllers/comments.js')
 const auth = require('./controllers/auth.js')
+const replies = require('./controllers/replies')
 
 
 // Set db
@@ -57,7 +58,9 @@ app.use(checkAuth);
 posts(app);
 comments(app)
 auth(app)
+replies(app)
 module.exports = app;
+
 
 // port
 app.listen(port, () => 

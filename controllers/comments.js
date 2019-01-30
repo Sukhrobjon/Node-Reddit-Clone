@@ -3,35 +3,32 @@ const Comment = require('../models/comment.js')
 const User = require('../models/user')
 
 
-// Done: Check with Dani if comment is assosiated with author
-
-
-    module.exports = function (app) {
-        // CREATE Comment
-        app.post("/posts/:postId/comments", function (req, res) {
-            const comment = new Comment(req.body);
-            comment.author = req.user._id;
-            comment
-                .save()
-                .then(comment => {
-                    return Promise.all([
-                        Post.findById(req.params.postId)
-                    ]);
-                })
-                .then(([post, user]) => {
-                    post.comments.unshift(comment);
-                    return Promise.all([
-                        post.save()
-                    ]);
-                })
-                .then(post => {
-                    res.redirect(`/posts/${req.params.postId}`);
-                })
-                .catch(err => {
-                    console.log(err);
-                });
-        });
-    };
+module.exports = function (app) {
+    // CREATE Comment
+    app.post("/posts/:postId/comments", function (req, res) {
+        const comment = new Comment(req.body);
+        comment.author = req.user._id;
+        comment
+            .save()
+            .then(comment => {
+                return Promise.all([
+                    Post.findById(req.params.postId)
+                ]);
+            })
+            .then(([post, user]) => {
+                post.comments.unshift(comment);
+                return Promise.all([
+                    post.save()
+                ]);
+            })
+            .then(post => {
+                res.redirect(`/posts/${req.params.postId}`);
+            })
+            .catch(err => {
+                console.log(err);
+            });
+    });
+};
 
 /**
  * TO-DO:
