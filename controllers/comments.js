@@ -21,7 +21,7 @@ module.exports = function(app) {
                     return Post.findById(req.params.postId)
 
                 }).then(post => {
-                    console.log('crashing here')
+                    
                     console.log(post)
 
                     post.comments.unshift(comment);
