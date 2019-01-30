@@ -57,20 +57,24 @@ module.exports = (app) => {
 
     // SHOW One post
     app.get("/posts/:id", function (req, res) {
-        // LOOK UP THE POST
         var currentUser = req.user;
-        Post.findById(req.params.id).populate({path:'comments', populate: {path: 'author'}}).populate('author')
-            .then((post) => {
-                res.render('posts-show', { post, currentUser })
-            }).catch((err) => {
-                console.log(err.message)
+        Post.findById(req.params.id).populate('comments').lean()
+            .then(post => {
+                res.render("posts-show", {
+                    post,
+                    currentUser
+                });
             })
+            .catch(err => {
+                console.log(err.message);
+            });
     });
+
 
     // SUBREDDIT
     app.get("/n/:subreddit", function (req, res) {
         var currentUser = req.user;
-        Post.find({ subreddit: req.params.subreddit }).populate('author')
+        Post.find({ subreddit: req.params.subreddit }).lean()
             .then(posts => {
                 res.render("posts-index", { posts, currentUser });
             })
@@ -95,3 +99,9 @@ module.exports = (app) => {
 * 3. Can you make a /profile route that loads the current user 
 *    and displays their posts and comments ?
 */
+
+/**
+ * TO-DO 
+ * 1. There is a bug when clicked subreddit 'coding' it shows empty page
+ * 2. And When I tried to add a comment, it didnt work either
+ */

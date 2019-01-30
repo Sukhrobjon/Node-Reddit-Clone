@@ -68,3 +68,11 @@ describe("User", function () {
     });
 });
 
+/**
+ * STRETCH CHALLENGE: 
+ * 
+ * 1. Can you write another test to test that it is impossible to 
+ * create a post if a user is not logged in?
+ * 2. Can you make all of your auth tests not pass, and then pass ? 
+ * What about your newly updated post test ?
+ */
