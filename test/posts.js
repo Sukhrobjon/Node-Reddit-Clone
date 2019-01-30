@@ -3,14 +3,19 @@ const app = require("./../server");
 const chai = require("chai");
 const chaiHttp = require("chai-http");
 const expect = chai.expect;
+chai.should();
+chai.use(chaiHttp);
 
 // Import the Post model from our models folder so we
 // we can use it in our tests.
 const Post = require('../models/post');
+const User = require("../models/user");
+
 const server = require('../server');
 
-chai.should();
-chai.use(chaiHttp);
+
+
+const agent = chai.request.agent(app);
 
 describe('Posts', function () {
     const agent = chai.request.agent(server);
@@ -20,26 +25,68 @@ describe('Posts', function () {
         url: 'https://www.google.com',
         summary: 'post summary',
     };
+    
+    const user = {
+        username: 'poststest',
+        password: 'testposts'
+    };
+
+    before(function (done) {
+        agent
+            .post('/sign-up')
+            .set("content-type", "application/x-www-form-urlencoded")
+            .send(user)
+            .then(function (res) {
+                done();
+            })
+            .catch(function (err) {
+                done(err);
+            });
+    });
     it("should create with valid attributes at POST /posts/new", function (done) {
           // Checks how many posts there are now
-  Post.estimatedDocumentCount()
-    .then(function (initialDocCount) {
-        chai
-            .request(app)
-            .post("/posts/new")
-            // This line fakes a form post,
-            // since we're not actually filling out a form
-            .set("content-type", "application/x-www-form-urlencoded")
-            // Make a request to create another
-            .send(newPost)
+    Post.estimatedDocumentCount()
+        .then(function (initialDocCount) {
+            chai
+                .request(app)
+                .post("/posts/new")
+                // This line fakes a form post,
+                // since we're not actually filling out a form
+                .set("content-type", "application/x-www-form-urlencoded")
+                // Make a request to create another
+                .send(newPost)
+                .then(function (res) {
+                    Post.estimatedDocumentCount()
+                        .then(function (newDocCount) {
+                            // Check that the database has one more post in it
+                            expect(res).to.have.status(200);
+                            // Check that the database has one more post in it
+                            expect(newDocCount).to.be.equal(initialDocCount + 1)
+                            done();
+                        })
+                        .catch(function (err) {
+                            done(err);
+                        });
+                })
+                .catch(function (err) {
+                    done(err);
+                });
+        })
+        .catch(function (err) {
+            done(err);
+        });
+    });
+    // delete the dummy post and user 
+    after(function (done) {
+        Post.findOneAndDelete(newPost)
             .then(function (res) {
-                Post.estimatedDocumentCount()
-                    .then(function (newDocCount) {
-                        // Check that the database has one more post in it
-                        expect(res).to.have.status(200);
-                        // Check that the database has one more post in it
-                        expect(newDocCount).to.be.equal(initialDocCount + 1)
-                        done();
+                agent.close()
+
+                User.findOneAndDelete({
+                        username: user.username
+                    })
+                    .then(function (res) {
+                        done()
                     })
                     .catch(function (err) {
                         done(err);
@@ -48,13 +95,13 @@ describe('Posts', function () {
             .catch(function (err) {
                 done(err);
             });
-    })
-    .catch(function (err) {
-        done(err);
-    });
-    });
-    // delete the test post
-    after(function () {
-        Post.findOneAndDelete(newPost);
     });
 });
+
+/**
+ * TO-DO
+ * Even I added the new code blocks to posts test it still fails
+ * with the error "Error: Timeout of 2000ms exceeded. For async tests 
+ * and hooks, ensure "done()" is called; if returning a Promise, 
+ * ensure it resolves."
+ */
