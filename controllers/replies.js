@@ -38,9 +38,10 @@ module.exports = app => {
                     .then(([reply, comment]) => {
                         // ADD THE REPLY
                         comment.comments.unshift(reply._id);
-
+                        
                         return Promise.all([
                             comment.save(),
+                    
                         ]);
                     })
                     .then(() => {
@@ -53,3 +54,10 @@ module.exports = app => {
     });
 
 };
+
+/**
+ * TO-DO:
+ * blocker: when reply crete is clicked it not posting, 
+ * What I did: I added comments, and replies in user model 
+ * TypeError: Cannot read property 'unshift' of undefined on line 42
+ */

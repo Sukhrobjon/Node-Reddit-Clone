@@ -31,7 +31,8 @@ module.exports = function (app) {
 };
 
 /**
- * TO-DO:
+ * Done:
  * There is a bug on comments part where the comments can be displayed
  * only when the page is refreshed
+ * 
  */
