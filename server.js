@@ -37,6 +37,8 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(expressValidator());
 app.use(cookieParser());
 
+app.use(express.static('public'));
+
 // Checking authentication if user is logged in
 var checkAuth = (req, res, next) => {
     console.log("Checking authentication");
