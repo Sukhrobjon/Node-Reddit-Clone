@@ -11,11 +11,11 @@
 * [X] Show all posts
 * [X] Comment on posts
 * [X] Create subreddits
-* [ ] Create a post on a subreddit
+* [X] Create a post on a subreddit
 * [X] Show all subreddits
-* [ ] Sign up and Login
-* [ ] Associate posts, comments, and votes with their author
-* [ ] Make comments on comments
+* [X] Sign up and Login
+* [X] Associate posts, comments, and votes with their author
+* [X] Make comments on comments
 * [ ] Vote a post up or down
 
 ## Set the repo 
@@ -38,4 +38,6 @@ To start the express server, run the following
 ```bash
 npm run start
 ```
-
+## Live
+coming soon...
+[Node-Reddit-Clone]()
