@@ -18,6 +18,17 @@
 * [X] Make comments on comments
 * [ ] Vote a post up or down
 
+## Stretch Challenges: 
+* [ ]
+* [ ]
+* [ ]
+* [ ]
+* [ ]
+* [ ]
+* [ ]
+* [ ]
+* [ ]
+
 ## Set the repo 
 
 Clone the repo and install the dependencies.
