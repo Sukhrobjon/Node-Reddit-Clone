@@ -58,13 +58,10 @@ module.exports = (app) => {
     // SHOW One post
     app.get("/posts/:id", function (req, res) {
         var currentUser = req.user;
-        Post.findById(req.params.id)
-            .deepPopulate('comments')
-            // .then(post => {
-            //     return post.deepPopulate('comments')
+        Post.findById(req.params.id).populate('comments').lean()
             .then(post => {
-                     console.log(post)
-                     console.log(post.comments.comments)
+                    //  console.log(post)
+                     console.log("comments on comments: "+ post.comments.comments)
                      res.render("posts-show", {
                          post,
                          currentUser
