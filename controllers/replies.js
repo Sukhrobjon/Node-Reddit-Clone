@@ -37,6 +37,8 @@ module.exports = app => {
                     ])
                     .then(([reply, comment]) => {
                         // ADD THE REPLY
+                        console.log('comment: ' + comment)
+                        console.log('comment.comments: ' + comment.comments)
                         comment.comments.unshift(reply._id);
                         
                         return Promise.all([
@@ -61,3 +63,7 @@ module.exports = app => {
  * What I did: I added comments, and replies in user model 
  * TypeError: Cannot read property 'unshift' of undefined on line 42
  */
+
+ /**
+  * check if comments on comments if 
+  */

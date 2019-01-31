@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 const Populate = require("../utils/autopopulate");
+var deepPopulate = require('mongoose-deep-populate')(mongoose);
 
 const PostSchema = new Schema({
   title: { type: String, required: true },
@@ -15,5 +16,7 @@ const PostSchema = new Schema({
 PostSchema
   .pre('findOne', Populate('author'))
   .pre('find', Populate('author'))
+  
+PostSchema.plugin(deepPopulate);
 
 module.exports = mongoose.model("Post", PostSchema);
