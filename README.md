@@ -19,15 +19,15 @@
 * [ ] Vote a post up or down
 
 ## Stretch Challenges: 
-* [ ]
-* [ ]
-* [ ]
-* [ ]
-* [ ]
-* [ ]
-* [ ]
-* [ ]
-* [ ]
+* [ ] 
+* [ ] 
+* [ ] 
+* [ ] 
+* [ ] 
+* [ ] 
+* [ ] 
+* [ ] 
+* [ ] 
 
 ## Set the repo 
 
