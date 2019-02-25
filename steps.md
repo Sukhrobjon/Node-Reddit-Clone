@@ -16,15 +16,15 @@
 - Question:
     what is the difference 
     ```javascript
-         app.get('/', function (req, res) {
-        var currentUser = req.user;
-        Post.find()
-            .then(posts => {
-                res.render('posts-index', { posts, currentUser });
-            })
-            .catch(err => {
-                console.log(err.message);
-            });
+    app.get('/', function (req, res) {
+    var currentUser = req.user;
+    Post.find()
+        .then(posts => {
+            res.render('posts-index', { posts, currentUser });
+        })
+        .catch(err => {
+            console.log(err.message);
+        });
     });
 
     res.render('posts-index', { posts, currentUser });
