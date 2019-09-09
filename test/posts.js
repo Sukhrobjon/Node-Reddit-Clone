@@ -8,7 +8,7 @@ chai.use(chaiHttp);
 
 // Import the Post model from our models folder so we
 // we can use it in our tests.
-const Post = require('../models/post');
+const Post = require("../models/post");
 const User = require("../models/user");
 
 const server = require('../server');

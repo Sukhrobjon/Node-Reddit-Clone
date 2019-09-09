@@ -24,7 +24,7 @@ Clone the repo and install the dependencies.
 
 ```bash
 git clone https://github.com/Sukhrobjon/Node-Reddit-Clone.git
-cd the-example-app.nodejs
+cd Node-Reddit-Clone
 ```
 
 ```bash
@@ -40,4 +40,4 @@ npm run start
 ```
 ## Live
 coming soon...
-[Node-Reddit-Clone]()
+[Node-Reddit-Clone](https://www.google.com/)
