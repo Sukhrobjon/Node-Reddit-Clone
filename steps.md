@@ -1,4 +1,4 @@
-##Learning outcomes
+## Learning outcomes
 * [X] Implement a large scale application using Express, Handlebars, and MongoDB/Mongoose
 * [X] Implement an authentication flow through JWTs that allows users to sign up, log in, and log out, and restricts functionality based on authentication status
 * [X] Investigate how to use the populate method in Mongoose for advanced associations
