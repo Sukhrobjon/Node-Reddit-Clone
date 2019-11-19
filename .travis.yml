@@ -1,7 +1,11 @@
+before_script:
+  – npm update -g npm
 language: node_js
 node_js:
   - '10'
   - '8'
+services:
+  - mongodb
 script:
   - npm run test
   - npm run build
