@@ -1,5 +1,3 @@
-before_script:
-  – npm update -g npm
 language: node_js
 node_js:
   - '10'
